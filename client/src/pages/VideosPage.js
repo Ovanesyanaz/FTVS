@@ -123,13 +123,15 @@ export const VideosPage = () => {
         </div>
         </div>
         <div>
+
             <h2>
-                {loading ? <img className = "ytka"src = "https://steamuserimages-a.akamaihd.net/ugc/788625812202009487/4C8FE17EA8F5C2706B6E7C36E7C4A80240CCA41D/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" alt = 'jfjf'></img>: null}
+                {loading ? <img className = "ytka" src = "https://steamuserimages-a.akamaihd.net/ugc/788625812202009487/4C8FE17EA8F5C2706B6E7C36E7C4A80240CCA41D/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" alt = 'jfjf'></img>: null}
             </h2>
                 
         </div>        
-        
-        <VideoCard videos={videos}/>   
+        <div className = "testcenter">
+            <VideoCard videos={videos}/>   
+        </div>
         </div>
     )
 }

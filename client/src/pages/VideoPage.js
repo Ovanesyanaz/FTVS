@@ -26,7 +26,7 @@ const video = location.state.elem
             </img>
             
             <h3 className="textcenter"> ссылка на данный видеоролик <a target = "_blank" rel="noreferrer" href = {video.ssi}>{video.ssi}</a></h3>
-            {video.contekst.map(elem => {
+            {(video.contekst.length !== 0)?video.contekst.map(elem => {
                 return(
                     <div className = "details">
                         <h3>
@@ -43,7 +43,8 @@ const video = location.state.elem
                         </h3>
                     </div>
                 )
-            })}
+            }):null}
+            
         </div>
     )
 }

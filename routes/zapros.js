@@ -63,9 +63,8 @@ router.post("/search", async (req, res) =>{
 
                             video.avatar = result[i].avatar
 
-                            if(video.contekst != 0){
+                            if(video.contekst != 0 || video.name.toLowerCase().includes(video.str)){
                                ar.push(video)
-                               console.log(video.avatar) 
                             }
                             
                         }
@@ -195,7 +194,7 @@ router.post("/searchfilter", async (req, res) =>{
 
                             video.topik = result[i].topik
 
-                            if(video.contekst != 0 && video.topik === filter){
+                            if((video.contekst != 0 || video.name.toLowerCase().includes(video.str)) && video.topik === filter){
                                ar.push(video) 
                             }
                             

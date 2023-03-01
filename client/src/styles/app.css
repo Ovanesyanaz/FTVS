@@ -86,7 +86,12 @@ a:visited{
     margin-left: auto;
     margin-right: auto;
 }
+.testcenter{
 
+    margin-left: auto;
+    margin-right: auto;    
+
+}
 
 .info{
     display: flex;
