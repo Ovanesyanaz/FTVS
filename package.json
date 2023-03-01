@@ -1,0 +1,34 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon appp.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.11.8",
+    "bin-version-check-cli": "^3.0.0",
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "mongo": "^0.1.0",
+    "vosk": "^0.3.39",
+    "youtube-dl-exec": "^2.1.8",
+    "yt-dlp-wrap": "^2.3.11",
+    "ytdl-core": "^4.11.2"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "nodemon": "^2.0.19"
+  }
+}
