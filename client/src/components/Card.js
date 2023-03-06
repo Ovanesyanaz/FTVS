@@ -4,7 +4,7 @@ import { Button } from "@mui/material"
 export const Card = (props) => {
     const navigate = useNavigate()
 
-    const toVideo = () => navigate(`/video/${props.elem.str}`, {state : props})
+    const toVideo = () => navigate(`/video/${props.elem.str}/${props.elem.id.id}`, {state : props})
     
 
     return (

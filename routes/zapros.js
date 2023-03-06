@@ -30,29 +30,12 @@ router.post("/search", async (req, res) =>{
                                 name : "",
                                 ssi : "",
                                 avatar : "",
-                                time : [],
-                                contekst : []
+                                id : "",
                             }
                             video.index = i
                             var itog = String(result[i].name)
                             if(itog.length > 33){
                                var itog = itog.substring(0, 33) + "..."
-                            }
-                            
-                            var con = result[i].ar
-
-                            context =  {
-
-                            }
-
-                            for(j = 0; j < con.length; j ++){
-                                if(con[j].text.includes(str)){
-                                    context = {
-                                        con : con[j].text,
-                                        time : con[j].result[0].start
-                                    }
-                                    video.contekst.push(context)
-                                }
                             }
 
                             video.name = itog
@@ -63,8 +46,12 @@ router.post("/search", async (req, res) =>{
 
                             video.avatar = result[i].avatar
 
+                            video.id = {id : result[i]._id}
+
+                            console.log(result[i]._id)
                             if(video.contekst != 0 || video.name.toLowerCase().includes(video.str)){
                                ar.push(video)
+                               
                             }
                             
                         }
@@ -157,6 +144,77 @@ router.post("/searchfilter", async (req, res) =>{
                                 avatar : "",
                                 author : "",
                                 topik : "",
+                                id : "",
+                            }
+                            video.index = i
+                            var itog = String(result[i].name)
+                            if(itog.length > 33){
+                               var itog = itog.substring(0, 33) + "..."
+                            }
+                            
+                            video.name = itog
+                            
+                            video.str = str
+
+                            video.ssi = result[i].ssi
+
+                            video.avatar = result[i].avatar
+
+                            video.author = result[i].author
+
+                            video.topik = result[i].topik
+
+                            video.id = {id : result[i]._id}
+
+                            if(video.topik === filter){
+                               ar.push(video) 
+                            }
+                            
+                        }
+                    if(ar.length === 0){
+                        ar.push("not found")
+                    }
+                    res.status(200).json(ar)
+                }})
+            }
+        })
+    }catch(ar){
+        console.log("arr")
+        res.status(200).json(ar)
+    }
+})
+
+
+router.post("/getvideopage", async (req, res) =>{
+    try{
+        const zapros = req.body.str
+        const id_video = req.body.id
+        console.log(req.body)
+        MongoClient.connect(url_m, function(err, client){
+            if(err){
+                console.log("Failed to connect", err);
+            }else{
+                console.log("connected to ", url_m);
+                const db = client.db("base")
+                const collection = db.collection("collection")
+                const str = zapros.toLowerCase()
+                const o_id = new mongodb.ObjectId(id_video)
+                collection.find({"_id":o_id}).toArray(function(err, result){
+                    if (err){
+                        console.log(err);
+                    }else if (result.length === 0){
+                        res.status(200).json(["not found"])
+                    }else{
+                        var ar = []
+                        for(i = 0; i < result.length; i ++){
+                            video = {
+                                str : "",
+                                index : "",
+                                name : "",
+                                ssi : "",
+                                avatar : "",
+                                author : "",
+                                topik : "",
                                 time : [],
                                 contekst : []
                             }
@@ -194,9 +252,8 @@ router.post("/searchfilter", async (req, res) =>{
 
                             video.topik = result[i].topik
 
-                            if((video.contekst != 0 || video.name.toLowerCase().includes(video.str)) && video.topik === filter){
-                               ar.push(video) 
-                            }
+                            ar.push(video) 
+                            
                             
                         }
                     if(ar.length === 0){

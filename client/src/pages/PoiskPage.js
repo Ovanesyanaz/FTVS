@@ -20,7 +20,7 @@ import { MenuItem } from "@mui/material";
 
 export const PoiskPage = () => {
 
-    const [spisok, setSpisok]  = useLocalStorage(null, "spisok")
+    const [spisok, setSpisok]  = useLocalStorage("", "spisok")
 
     const [videos, setVideos] = useLocalStorage([], "video")
 
@@ -34,6 +34,10 @@ export const PoiskPage = () => {
     const navigate = useNavigate()
 
     const toS = (data, spisok) => navigate(`/s/${(value.str)}`, {state :{str : value.str, data:data, spisok:spisok}})
+
+    const toSearchPageFilter = () => navigate(`/s/${spisok}/${(value.str)}`.replace("//", "/"))
+
+    const toSearchPage = () => navigate(`/s/${(value.str)}`, {state:{spisok: spisok}})
 
     const toVideosInfo = () => navigate("/info")
 
@@ -55,6 +59,15 @@ export const PoiskPage = () => {
             }        
         }catch(e){
             console.log(value.str)
+        }
+    }
+
+    const ToSearch = (spisok) => {
+        if (spisok === ""){
+            toSearchPage()
+        }
+        else{
+            toSearchPageFilter()
         }
     }
 
@@ -100,7 +113,7 @@ export const PoiskPage = () => {
         <Button
         
         className = "button"
-        onClick = {ClickButton}
+        onClick = {ToSearch}
         disabled = {loading}
         
         >
@@ -133,7 +146,7 @@ export const PoiskPage = () => {
           value={spisok}
           onChange={handleChange}
         >
-          <MenuItem value = {null}>Без Фильтра</MenuItem>
+          <MenuItem value = {""}>Без Фильтра</MenuItem>
           <MenuItem value={"MATH"}>Математика</MenuItem>
           <MenuItem value={"INFO"}>Информатика</MenuItem>
           <MenuItem value={"PROG"}>Програмирование</MenuItem>

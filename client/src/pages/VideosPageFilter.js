@@ -19,7 +19,7 @@ import { useLocation } from "react-router-dom";
 
 
 
-export const VideosPage = () => {
+export const VideosPageFilter = () => {
 
     const params = useParams()
     
@@ -39,10 +39,9 @@ export const VideosPage = () => {
         console.log("params - ", params)
         setValue({str : params.search})
         const ClickButton = async() => {
-            try{
-                
+            try{                
                 setVideos([])
-                const data = await request("/server/search" , "POST" , {value} )
+                const data = await request("/server/searchfilter" , "POST" , {value, ...params.topik} )
                 console.log("from client: "  , data)
                 setVideos([...data])  
             }catch(e){
@@ -58,14 +57,14 @@ export const VideosPage = () => {
 
     const toS = (props) => navigate(`/s/${(value.str)}`, {state :{str : value.str, data:props}})
 
+    const toSearchPageFilter = () => navigate(`/s/${params.topik}/${(value.str)}`.replace("//", "/"))
 
     const ClickButton = async() => {
         try{
                 setVideos([])
-                const data = await request("/server/search" , "POST" , {value} )
+                const data = await request("/server/searchfilter" , "POST" , {value, ...params.topik} )
                 console.log("from client: "  , data)
-                setVideos([...data])
-                toS(data)        
+                setVideos([...data])        
         }catch(e){
             console.log(value.str)
         }

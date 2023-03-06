@@ -5,6 +5,7 @@ import { VideoPage } from "./pages/VideoPage";
 import { VideosPage } from "./pages/VideosPage";
 import { OtdelPoiskPage } from "./pages/OtdelPoiskPage"
 import { InfoVideosPage } from "./pages/InfoVideosPage";
+import { VideosPageFilter } from "./pages/VideosPageFilter";
 
 function App() {
   
@@ -18,9 +19,12 @@ function App() {
         
         <Route path="/s/:search" element = {<VideosPage/>}/>
         
-        <Route path="/video/:search" element= {<VideoPage/>}/>
+        <Route path="/video/:search/:id" element= {<VideoPage/>}/>
         
         <Route path="/info" element = {<InfoVideosPage/>}/>
+      
+        <Route path="/s/:topik/:search" element = {<VideosPageFilter></VideosPageFilter>}/>
+
       </Routes>
       
   
