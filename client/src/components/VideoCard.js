@@ -34,7 +34,7 @@ export const VideoCard = ({videos}) => {
         <div className="testcenter">
             {videos.map(elem => {               
                 return (
-                    <Card key={elem.ssi} elem = {elem}>
+                    <Card key={elem.id.id} elem = {elem}>
                         
                     </Card>
                 )

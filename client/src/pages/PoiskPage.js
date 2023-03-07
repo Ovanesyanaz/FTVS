@@ -20,7 +20,7 @@ import { MenuItem } from "@mui/material";
 
 export const PoiskPage = () => {
 
-    const [spisok, setSpisok]  = useLocalStorage("", "spisok")
+    const [spisok, setSpisok]  = useLocalStorage("")
 
     const [videos, setVideos] = useLocalStorage([], "video")
 
@@ -35,41 +35,29 @@ export const PoiskPage = () => {
 
     const toS = (data, spisok) => navigate(`/s/${(value.str)}`, {state :{str : value.str, data:data, spisok:spisok}})
 
-    const toSearchPageFilter = () => navigate(`/s/${spisok}/${(value.str)}`.replace("//", "/"))
+    const toSearchPageFilter = () => navigate(`/s/${(value.str)}/${(spisok)}`.replace("//", "/"))
 
-    const toSearchPage = () => navigate(`/s/${(value.str)}`, {state:{spisok: spisok}})
+    const toSearchPage = () => navigate(`/s/${(value.str)}`)
 
     const toVideosInfo = () => navigate("/info")
 
-    const ClickButton = async() => {
-        try{
-            if(spisok === null){
-                setVideos([])
-                const data = await request("/server/search" , "POST" , {value} )
-                console.log("from client: "  , data)
-                setVideos([...data])
-                toS(data, spisok)
-            }
-            else{
-                setVideos([])
-                const data = await request("/server/searchfilter" , "POST" , {value, spisok} )
-                console.log("from client: "  , data)
-                setVideos([...data])
-                toS(data, spisok)
-            }        
-        }catch(e){
-            console.log(value.str)
-        }
-    }
-
     const ToSearch = (spisok) => {
         if (spisok === ""){
+            console.log("toSearchPage")
             toSearchPage()
         }
         else{
+            console.log("spisok")
+            console.log("toSearchPageFilter")
             toSearchPageFilter()
         }
     }
+    
+    const ClickButton = async() => {
+        ToSearch(spisok)
+    }
+
+
 
     const ChangeHandler = (event) => {
         setValue({...value, [event.target.name]:event.target.value})
@@ -113,7 +101,7 @@ export const PoiskPage = () => {
         <Button
         
         className = "button"
-        onClick = {ToSearch}
+        onClick = {ClickButton}
         disabled = {loading}
         
         >
@@ -138,7 +126,7 @@ export const PoiskPage = () => {
         
         </div>
         <div>
-    <FormControl fullWidth>
+        <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Тематика</InputLabel>
         <Select
           labelId="demo-simple-select-label"

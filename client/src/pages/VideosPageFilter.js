@@ -41,7 +41,8 @@ export const VideosPageFilter = () => {
         const ClickButton = async() => {
             try{                
                 setVideos([])
-                const data = await request("/server/searchfilter" , "POST" , {value, ...params.topik} )
+                console.log(params.topik)
+                const data = await request("/server/searchfilter" , "POST" , {value, params} )
                 console.log("from client: "  , data)
                 setVideos([...data])  
             }catch(e){

@@ -19,11 +19,11 @@ function App() {
         
         <Route path="/s/:search" element = {<VideosPage/>}/>
         
-        <Route path="/video/:search/:id" element= {<VideoPage/>}/>
+        <Route path="/video/:id/:search" element= {<VideoPage/>}/>
         
         <Route path="/info" element = {<InfoVideosPage/>}/>
       
-        <Route path="/s/:topik/:search" element = {<VideosPageFilter></VideosPageFilter>}/>
+        <Route path="/s/:search/:topik" element = {<VideosPageFilter></VideosPageFilter>}/>
 
       </Routes>
       

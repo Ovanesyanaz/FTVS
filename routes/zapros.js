@@ -48,7 +48,6 @@ router.post("/search", async (req, res) =>{
 
                             video.id = {id : result[i]._id}
 
-                            console.log(result[i]._id)
                             if(video.contekst != 0 || video.name.toLowerCase().includes(video.str)){
                                ar.push(video)
                                
@@ -115,10 +114,11 @@ router.post("/infovideos", async (req, res) =>{
 
 
 router.post("/searchfilter", async (req, res) =>{
+    console.log("/searchfilter route")
     try{
         const zapros = req.body.value.str
-        const filter = req.body.spisok
-        console.log(filter)
+        const filter = req.body.params.topik
+        console.log(req.body)
         MongoClient.connect(url_m, function(err, client){
             if(err){
                 console.log("Failed to connect", err);
