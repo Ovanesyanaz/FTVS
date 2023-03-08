@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -19,18 +19,22 @@ export const InfoVideosPage = () => {
 
     const toHome = () => navigate(`/`)
 
-    const ClickButton = async() => {
-        try{
-
-                const data = await request("/server/infovideos" , "POST")
-                console.log("from client: "  , data)
-                setVideosInfo([...data])
-                console.log(data)
-               
-        }catch(e){
-            console.log("ошибка клиент")
+    useEffect(() => {
+        const ClickButton = async() => {
+            try{
+    
+                    const data = await request("/server/infovideos" , "POST")
+                    console.log("from client: "  , data)
+                    setVideosInfo([...data])
+                    console.log(data)
+                   
+            }catch(e){
+                console.log("ошибка клиент")
+            }
         }
-    }
+        
+        ClickButton()
+    }, [])
 
 
     return(
@@ -53,18 +57,6 @@ export const InfoVideosPage = () => {
         >
         
         Вернуться к поиску
-        
-        </Button>
-
-
-        <Button
-        
-        onClick = {ClickButton}
-        disabled = {loading}
-        
-        >
-        
-        Посмотреть информацию
         
         </Button>
 
