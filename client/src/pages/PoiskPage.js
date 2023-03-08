@@ -74,7 +74,7 @@ export const PoiskPage = () => {
 
 
     return (
-        <div>
+        <div className="poiskpage">
             
         <div className = "info">
         <>
@@ -125,7 +125,7 @@ export const PoiskPage = () => {
         </div>
         
         </div>
-        <div>
+        <div className="filter">
         <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Тематика</InputLabel>
         <Select

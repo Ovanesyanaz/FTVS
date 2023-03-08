@@ -1,17 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {useParams, useLocation, useNavigate } from "react-router-dom";
+import {useParams, useNavigate } from "react-router-dom";
 import {Button} from "@mui/material"
 import {useHttp} from "../hooks/http.hook";
 
 export const VideoPage = () => {
 const navigate = useNavigate()
 const params = useParams()
-const {loading, request} = useHttp()
+const {request} = useHttp()
 
 
 const toHome = () => navigate(-1)
-const location = useLocation()
+
 
 const [videos, setVideos] = useState([])
 
@@ -37,10 +37,12 @@ if(videos.length !== 0){
         
 
         <div className="videoinfo">
-            <Button onClick={toHome} >Вернуться</Button>
-            <h3 className="textcenter">Поисковая строка: {videos[0].str}</h3>
+            <div className="videonamestr">
+               <Button style={{float:"left"}} onClick={toHome} >Вернуться</Button>
+               <h3 className="textcenter">Поисковая строка: {videos[0].str}</h3>
+               <h2 className="textcenter">{videos[0].name}</h2>
+            </div>
 
-            <h2 className="textcenter">{videos[0].name}</h2>
             <img
             className="imgvideo2"
             src = {videos[0].avatar.replace("hqdefault.jpg", "hq720.jpg")} 

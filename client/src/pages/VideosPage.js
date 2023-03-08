@@ -134,7 +134,7 @@ export const VideosPage = () => {
             </h2>
                 
         </div>        
-        <div className = "testcenter">
+        <div className = "videocards">
             <VideoCard videos={videos}/>   
         </div>
         </div>

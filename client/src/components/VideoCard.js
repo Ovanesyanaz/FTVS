@@ -31,7 +31,7 @@ export const VideoCard = ({videos}) => {
                 )
                 }
     return ( 
-        <div className="testcenter">
+        <div>
             {videos.map(elem => {               
                 return (
                     <Card key={elem.id.id} elem = {elem}>
