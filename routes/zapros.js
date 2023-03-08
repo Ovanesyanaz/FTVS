@@ -30,28 +30,56 @@ router.post("/search", async (req, res) =>{
                                 name : "",
                                 ssi : "",
                                 avatar : "",
+                                author : "",
+                                topik : "",
+                                time : [],
                                 id : "",
+                                time : [],
+                                contekst : []
+
                             }
                             video.index = i
                             var itog = String(result[i].name)
                             if(itog.length > 33){
                                var itog = itog.substring(0, 33) + "..."
                             }
+                            
+                            var con = result[i].ar
+
+                            context =  {
+
+                            }
+
+                            for(j = 0; j < con.length; j ++){
+                                if(con[j].text.includes(str)){
+                                    context = {
+                                        con : con[j].text,
+                                        time : con[j].result[0].start
+                                    }
+                                    video.contekst.push(context)
+                                }
+                            }
 
                             video.name = itog
                             
                             video.str = str
 
+                            video.id = {id : result[i]._id}
+
                             video.ssi = result[i].ssi
 
                             video.avatar = result[i].avatar
 
-                            video.id = {id : result[i]._id}
+                            video.author = result[i].author
 
-                            if(video.contekst != 0 || video.name.toLowerCase().includes(video.str)){
-                               ar.push(video)
-                               
+                            video.topik = result[i].topik
+
+                            if ((video.contekst.length !== 0 || video.name.toLowerCase().includes(video.str))){
+                                ar.push(video)
                             }
+
+                             
+                            
                             
                         }
                     if(ar.length === 0){
@@ -145,13 +173,32 @@ router.post("/searchfilter", async (req, res) =>{
                                 author : "",
                                 topik : "",
                                 id : "",
+                                time : [],
+                                contekst : []
                             }
                             video.index = i
                             var itog = String(result[i].name)
                             if(itog.length > 33){
                                var itog = itog.substring(0, 33) + "..."
                             }
-                            
+ 
+                                                        
+                            var con = result[i].ar
+
+                            context =  {
+
+                            }
+
+                            for(j = 0; j < con.length; j ++){
+                                if(con[j].text.includes(str)){
+                                    context = {
+                                        con : con[j].text,
+                                        time : con[j].result[0].start
+                                    }
+                                    video.contekst.push(context)
+                                }
+                            }
+
                             video.name = itog
                             
                             video.str = str
@@ -166,7 +213,7 @@ router.post("/searchfilter", async (req, res) =>{
 
                             video.id = {id : result[i]._id}
 
-                            if(video.topik === filter){
+                            if(video.topik === filter && ((video.name.toLowerCase().includes(video.str)) || video.contekst.length !== 0)){
                                ar.push(video) 
                             }
                             
@@ -178,8 +225,8 @@ router.post("/searchfilter", async (req, res) =>{
                 }})
             }
         })
-    }catch(ar){
-        console.log("arr")
+    }catch(error){
+        console.log(error)
         res.status(200).json(ar)
     }
 })

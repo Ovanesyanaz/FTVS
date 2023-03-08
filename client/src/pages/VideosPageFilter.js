@@ -29,11 +29,7 @@ export const VideosPageFilter = () => {
 
     const {loading, request} = useHttp()
     
-    const [value, setValue] = useState({str : params.search})
-
-
-    
-    
+    const [value, setValue] = useState({str : params.search})    
 
     useEffect(() => {
         console.log("params - ", params)
@@ -63,7 +59,7 @@ export const VideosPageFilter = () => {
     const ClickButton = async() => {
         try{
                 setVideos([])
-                const data = await request("/server/searchfilter" , "POST" , {value, ...params.topik} )
+                const data = await request("/server/searchfilter" , "POST" , {value, params} )
                 console.log("from client: "  , data)
                 setVideos([...data])        
         }catch(e){
