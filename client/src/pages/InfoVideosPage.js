@@ -41,24 +41,16 @@ export const InfoVideosPage = () => {
         <div>
         <div className = "info">
         <>
-        <img 
+        <input
+        onClick = {toHome}
+        type = "image"
         src = "https://sun9-east.userapi.com/sun9-43/s/v1/ig2/N9J9egWi19IdtvGl6ZsxBlqbSKPvZBUcvvGInIBPTLnmZWeZ7MTbnAmaipr996yj_Vs6nfDjz5uXeAvOb6yNF7bS.jpg?size=807x796&quality=95&type=album"
         alt = "не вышло" 
         className = "img">
-        </img>        
+        </input>        
         </>
         <div className="poisk">        
-        
-        <Button
-        
-        onClick = {toHome}
-        disabled = {loading}
-        
-        >
-        
-        Вернуться к поиску
-        
-        </Button>
+
 
         </div>
         </div>
