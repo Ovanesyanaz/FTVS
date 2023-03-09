@@ -49,7 +49,7 @@
     margin-bottom: 15px;
     width: 370px;
     height: 300px;
-    display: inline-block;
+    display: inline-grid;
 }
 .avatar{
     max-width: 100%; 

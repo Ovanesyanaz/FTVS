@@ -126,12 +126,7 @@ export const VideosPageFilter = () => {
         Найти
         
         </Button>
-
-
-        {videos.length !== 0 ? <Button onClick = {clearVideos}>Обновить</Button>:null}
-         
-
-
+        
         </div>
         </div>
         <div>

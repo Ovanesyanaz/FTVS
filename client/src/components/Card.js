@@ -9,10 +9,9 @@ export const Card = (props) => {
 
     return (
         <div className="video">
-            <img className="imgvideo" src = {props.elem.avatar.replace("hqdefault.jpg", "hq720.jpg")} alt = "ошибка :)"/>
-            <h4 className ="text-center"><a target = "_blank" href = {props.elem.ssi}>{props.elem.name}</a></h4>
-            <Button onClick = {toVideo} >Подробная информация</Button>
-            <hr className = "hr-left"></hr> 
+            <input type = "image" onClick={toVideo} className="imgvideo" src = {props.elem.avatar.replace("hqdefault.jpg", "hq720.jpg")} alt = "ошибка :)"/>
+            <h4 className ="text-center"><a href = {`/video/${props.elem.id.id}/${props.elem.str}`}><p></p>{props.elem.name}</a></h4>
+
        </div>
     )
 }

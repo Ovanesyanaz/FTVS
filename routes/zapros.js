@@ -40,10 +40,7 @@ router.post("/search", async (req, res) =>{
                             }
                             video.index = i
                             var itog = String(result[i].name)
-                            if(itog.length > 33){
-                               var itog = itog.substring(0, 33) + "..."
-                            }
-                            
+
                             var con = result[i].ar
 
                             context =  {
@@ -178,10 +175,6 @@ router.post("/searchfilter", async (req, res) =>{
                             }
                             video.index = i
                             var itog = String(result[i].name)
-                            if(itog.length > 33){
-                               var itog = itog.substring(0, 33) + "..."
-                            }
- 
                                                         
                             var con = result[i].ar
 
