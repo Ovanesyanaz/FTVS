@@ -38,6 +38,7 @@ export const VideosPage = () => {
     useEffect(() => {
         console.log("params - ", params)
         setValue({str : params.search})
+        console.log(params.search)
         const ClickButton = async() => {
             try{
                 
@@ -54,13 +55,17 @@ export const VideosPage = () => {
 
     const navigate = useNavigate()
 
-    const toHome = () => navigate(`/`)
-
+    const toHome = () => {
+        setVideos([])
+        navigate(`/`, {state : {str : value.str}})
+        localStorage.setItem("value", JSON.stringify(value))
+    }
     const toS = (props) => navigate(`/s/${(value.str)}`, {state :{str : value.str, data:props}})
 
 
     const ClickButton = async() => {
         try{
+                navigate(`/s/${(value.str)}`)
                 setVideos([])
                 const data = await request("/server/search" , "POST" , {value} )
                 console.log("from client: "  , data)
@@ -85,6 +90,9 @@ export const VideosPage = () => {
 
     return(
         <div>
+        <div className = "infoBlock">
+        <Button onClick = {toHome}>Выбрать тематику</Button>
+        </div>
         <div className = "info">
         <>
         <img 
@@ -119,10 +127,7 @@ export const VideosPage = () => {
         Найти
         
         </Button>
-
-
-        {videos.length !== 0 ? <Button onClick = {clearVideos}>Обновить</Button>:null}
-         <Button onClick = {toHome}>Выбрать тематику</Button>   
+   
 
 
         </div>

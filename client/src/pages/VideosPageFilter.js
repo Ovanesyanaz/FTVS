@@ -50,14 +50,22 @@ export const VideosPageFilter = () => {
 
     const navigate = useNavigate()
 
-    const toHome = () => navigate(`/`)
+    const toHome = () => 
+    {
+        localStorage.setItem("value", JSON.stringify(value))
+        setVideos([])
+        navigate(`/`)
+
+    }
+
 
     const toS = (props) => navigate(`/s/${(value.str)}`, {state :{str : value.str, data:props}})
 
-    const toSearchPageFilter = () => navigate(`/s/${params.topik}/${(value.str)}`.replace("//", "/"))
+    const toSearchPageFilter = () => navigate(`/s/${value.str}/${(params.topik)}`.replace("//", "/"))
 
     const ClickButton = async() => {
         try{
+                navigate(`/s/${value.str}/${(params.topik)}`.replace("//", "/"))
                 setVideos([])
                 const data = await request("/server/searchfilter" , "POST" , {value, params} )
                 console.log("from client: "  , data)
@@ -80,7 +88,10 @@ export const VideosPageFilter = () => {
 
 
     return(
-        <div>
+        <div>  
+        <div className = "infoBlock">
+        <Button onClick = {toHome}>Выбрать тематику</Button>
+        </div>
         <div className = "info">
         <>
         <img 
@@ -118,7 +129,7 @@ export const VideosPageFilter = () => {
 
 
         {videos.length !== 0 ? <Button onClick = {clearVideos}>Обновить</Button>:null}
-         <Button onClick = {toHome}>Выбрать тематику</Button>   
+         
 
 
         </div>

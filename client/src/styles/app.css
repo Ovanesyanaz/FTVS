@@ -65,7 +65,8 @@
     height: 50px;
     border-right: 10px;
 }
-.input{ 
+.input{
+    min-width: 50%; 
     height: 50px;
     margin-top: 30px;
 }
@@ -101,7 +102,15 @@ a:visited{
 
 }
 
+.videocards {
+    display: inline-flex;
+    max-width: 900px;
+    min-width: 400px;
+    justify-content: center;
+}
+
 .info{
+    
     display: inline-flex;
 }
 .details{
@@ -117,12 +126,18 @@ a:visited{
 }
 
 .poisk{
+    min-width: 66%;
     display:inline;
     margin-top: 50px;
 }
 .text-center{
     text-align: center;
 }
+
+.infoBlock{
+    margin-top: 20px;
+}
+
 .imgvideo{
     height: 135px;
     width: 240px;

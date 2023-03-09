@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import "../styles/app.css"
 
@@ -12,7 +12,7 @@ import { TextField } from "@mui/material"
 
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import  { Select }  from "@mui/material";
 
@@ -27,9 +27,8 @@ export const PoiskPage = () => {
     const {loading, request} = useHttp()
     
     const [value, setValue] = useState({
-        str: ""
+        str: JSON.parse(localStorage.getItem("value")).str
     })
-    
 
     const navigate = useNavigate()
 
@@ -42,7 +41,7 @@ export const PoiskPage = () => {
     const toVideosInfo = () => navigate("/info")
 
     const ToSearch = (spisok) => {
-        if (spisok === ""){
+        if (spisok === "ALL"){
             console.log("toSearchPage")
             toSearchPage()
         }
@@ -72,10 +71,31 @@ export const PoiskPage = () => {
         console.log(event.target.value)
     }
 
+    const location = useLocation()
+
+    const clearValue = (location) => {
+        console.log("clearValue")
+    }
+
+    useEffect(()=>{ 
+        
+        clearVideos()
+        console.log({str : JSON.parse(localStorage.getItem("value")).str})
+        console.log(value)
+
+    }, [])
 
     return (
-        <div className="poiskpage">
-            
+        <>
+        
+        <div className="infoBlock">
+        <Button
+            onClick = {toVideosInfo}
+        >
+        информация о базе видеороликов
+        </Button>
+        </div> 
+        <div className="poiskpage">   
         <div className = "info">
         <>
         <img 
@@ -94,6 +114,7 @@ export const PoiskPage = () => {
         variant="outlined"
         placeholder=""
         name="str"
+        value = {value.str}
         onChange= {ChangeHandler}
         />
 
@@ -112,15 +133,6 @@ export const PoiskPage = () => {
 
 
         {videos.length !== 0 ? <Button onClick = {clearVideos}>Обновить</Button>:null}
-        
-        
-        <Button
-        onClick = {toVideosInfo}
-        >
-            информация о видео
-        </Button>
-            
-
 
         </div>
         
@@ -134,7 +146,7 @@ export const PoiskPage = () => {
           value={spisok}
           onChange={handleChange}
         >
-          <MenuItem value = {""}>Без Фильтра</MenuItem>
+          <MenuItem value = {"ALL"}>Все тематики</MenuItem>
           <MenuItem value={"MATH"}>Математика</MenuItem>
           <MenuItem value={"INFO"}>Информатика</MenuItem>
           <MenuItem value={"PROG"}>Програмирование</MenuItem>
@@ -152,5 +164,6 @@ export const PoiskPage = () => {
         <VideoCard videos={videos}/>
             
         </div>
+        </>
     )
 }
