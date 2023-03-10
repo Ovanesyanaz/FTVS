@@ -122,10 +122,10 @@ a:visited{
 .details{
     display:block;
     text-align: left;
-    padding: 0px;
+    padding: 15px;
     margin: 15px;
     border-radius: 10px;
-    border : 2px solid rgb(15,129,149);
+    background-color: rgb(223, 237, 249);
 }
 .first{
     display: none;

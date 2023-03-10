@@ -54,6 +54,7 @@ router.post("/search", async (req, res) =>{
                                         time : con[j].result[0].start
                                     }
                                     video.contekst.push(context)
+                                    break
                                 }
                             }
 
@@ -189,6 +190,7 @@ router.post("/searchfilter", async (req, res) =>{
                                         time : con[j].result[0].start
                                     }
                                     video.contekst.push(context)
+                                    break
                                 }
                             }
 
@@ -260,9 +262,6 @@ router.post("/getvideopage", async (req, res) =>{
                             }
                             video.index = i
                             var itog = String(result[i].name)
-                            if(itog.length > 33){
-                               var itog = itog.substring(0, 33) + "..."
-                            }
                             
                             var con = result[i].ar
 

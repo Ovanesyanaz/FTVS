@@ -39,9 +39,7 @@ if(videos.length !== 0){
         <div className="videoinfo">
             <div className="videonamestr">
                <Button style={{float:"left"}} onClick={toHome} >Вернуться</Button>
-               <h3 className="textcenter">Поисковая строка: {videos[0].str}</h3>
-               <h2 className="textcenter">{videos[0].name}</h2>
-            </div>
+               
 
             <img
             className="imgvideo2"
@@ -49,22 +47,22 @@ if(videos.length !== 0){
             alt = "not found"
             >
             </img>
-            
-            <h3 className="textcenter"> ссылка на данный видеоролик <a target = "_blank" rel="noreferrer" href = {videos[0].ssi}>{videos[0].ssi}</a></h3>
+            <h3><a target = "_blank" rel="noreferrer" href = {videos[0].ssi}>{videos[0].name}</a></h3>
+            <h3 className="textcenter">Поисковая строка: {videos[0].str}</h3>
+              
+
+            </div>
             {(videos[0].contekst.length !== 0)?videos[0].contekst.map(elem => {
+                const time = (Math.trunc(elem.time / 3600)).toString() + ":" + Math.trunc(elem.time % 3600 / 60).toString() + ":" + Math.trunc(elem.time % 3600 % 60).toString()
                 return(
                     <div className = "details">
+
                         <h3>
-                            через {Math.floor(elem.time)} секунд после начала видео прозвучала фраза :
-                        </h3>
-                        <h3>
-                            {elem.con}
-                        </h3>
-                        <h3>
-                            Посмотреть видео с данной секунды:
                             <a target = "_blank"  rel="noreferrer" href = {videos[0].ssi + "&t=" + Math.floor(elem.time)}>
-                                {videos[0].name}
+                                {time} : &nbsp;
                             </a>
+
+                            {elem.con}
                         </h3>
                     </div>
                 )
