@@ -10,7 +10,7 @@ import { useHttp } from "../hooks/http.hook";
 
 import { Button } from "@mui/material";
 
-import { TextField } from "@mui/material"
+import { TextField, Box } from "@mui/material"
 
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -100,21 +100,27 @@ export const VideosPageFilter = () => {
         className = "img">
         </img>        
         </>
-        <div className="poisk">
-        
-        
-        <TextField 
-        className="input"
-        id="outlined-basic"  
-        variant="outlined"
-        placeholder=""
-        value = {value.str}
-        name="str"
-        onChange= {ChangeHandler}
+        <div className="poiskpage">
+        <div className="info">
+            <div className = "poisk">
+            <Box
+        sx={{ 
+        minWidth: (window.screen.width / 100 * 75 - 250).toString() + "px",
+        maxWidth: (window.screen.width / 100 * 75 - 250).toString() + "px",
+        }}
         >
-        </TextField>
+        <TextField
+        fullWidth
+        label="поиск..." 
+        id="fullWidth" 
+        name="str"
+        value = {value.str}
+        onChange= {ChangeHandler}
+        />
+        </Box>
+        </div>
 
-
+        <div className="buttondiv">
         <Button
         
         className = "button"
@@ -126,6 +132,10 @@ export const VideosPageFilter = () => {
         Найти
         
         </Button>
+
+        </div>
+            </div>
+        
         
         </div>
         </div>

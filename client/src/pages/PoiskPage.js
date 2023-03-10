@@ -6,7 +6,7 @@ import {VideoCard} from "../components/VideoCard";
 
 import { useHttp } from "../hooks/http.hook";
 
-import { Button, FormControl, InputLabel } from "@mui/material";
+import {Box, Button, FormControl, InputLabel } from "@mui/material";
 
 import { TextField } from "@mui/material"
 
@@ -78,7 +78,8 @@ export const PoiskPage = () => {
     }
 
     useEffect(()=>{ 
-        
+        const screenWidth = (window.screen.width / 100 * 75 - 300).toString() + "px"
+        console.log(screenWidth)
         clearVideos()
         console.log({str : JSON.parse(localStorage.getItem("value")).str})
         console.log(value)
@@ -105,20 +106,24 @@ export const PoiskPage = () => {
         </img>        
         </>
         <div className="poisk">
-        
-        
-        <TextField 
-        className="input"
-        id="outlined-basic" 
-        label="Искать..." 
-        variant="outlined"
-        placeholder=""
+        <Box
+        sx={{ 
+        minWidth: (window.screen.width / 100 * 75 - 250).toString() + "px",
+        maxWidth: (window.screen.width / 100 * 75 - 250).toString() + "px",
+        }}
+        >
+        <TextField
+        fullWidth
+        label="поиск..." 
+        id="fullWidth" 
         name="str"
         value = {value.str}
         onChange= {ChangeHandler}
         />
+        </Box>
+        </div>
 
-
+        <div className="buttondiv">
         <Button
         
         className = "button"
@@ -130,9 +135,6 @@ export const PoiskPage = () => {
         Найти
         
         </Button>
-
-
-        {videos.length !== 0 ? <Button onClick = {clearVideos}>Обновить</Button>:null}
 
         </div>
         
