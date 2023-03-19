@@ -26,9 +26,9 @@ export const PoiskPage = () => {
 
     const {loading, request} = useHttp()
     
-    const [value, setValue] = useState({
-        str: JSON.parse(localStorage.getItem("value")).str
-    })
+    const [value, setValue] = useLocalStorage({
+        str:""
+    }, "value")
 
     const navigate = useNavigate()
 
@@ -81,9 +81,6 @@ export const PoiskPage = () => {
         const screenWidth = (window.screen.width / 100 * 75 - 300).toString() + "px"
         console.log(screenWidth)
         clearVideos()
-        console.log({str : JSON.parse(localStorage.getItem("value")).str})
-        console.log(value)
-
     }, [])
 
     return (
