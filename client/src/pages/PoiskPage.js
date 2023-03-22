@@ -2,6 +2,10 @@ import React, {useEffect, useState} from "react";
 
 import "../styles/app.css"
 
+import SearchIcon from '@material-ui/icons/Search';
+
+import Icon from "@material-ui/core/Icon"
+
 import {VideoCard} from "../components/VideoCard";
 
 import { useHttp } from "../hooks/http.hook";
@@ -121,26 +125,23 @@ export const PoiskPage = () => {
         </div>
 
         <div className="buttondiv">
-        <Button
-        
+        <input
+        type = "image"
+        src = "https://images.squarespace-cdn.com/content/v1/5981e865f14aa16941337125/1507228368642-3M1N4Z4KO42PGDZTMMWH/discover.png"
         className = "button"
         onClick = {ClickButton}
         disabled = {loading}
         
-        >
+        />
         
-        Найти
-        
-        </Button>
+        </div>
+        </div>
 
-        </div>
-        
-        </div>
         <div className="filter">
-        <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Тематика</InputLabel>
+        <FormControl variant="filled" fullWidth>
+        <InputLabel id="demo-simple-select-filled-label">Тематика</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
+          labelId="demo-simple-select-filled-label"
           id="demo-simple-select"
           value={spisok}
           onChange={handleChange}

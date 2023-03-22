@@ -34,6 +34,7 @@ router.post("/search", async (req, res) =>{
                                 topik : "",
                                 time : [],
                                 id : "",
+                                filter: true,
                                 time : [],
                                 contekst : []
 
@@ -57,6 +58,8 @@ router.post("/search", async (req, res) =>{
                                     break
                                 }
                             }
+
+                            video.filter = false
 
                             video.name = itog
                             
@@ -171,6 +174,7 @@ router.post("/searchfilter", async (req, res) =>{
                                 author : "",
                                 topik : "",
                                 id : "",
+                                filter : true,
                                 time : [],
                                 contekst : []
                             }
@@ -193,6 +197,8 @@ router.post("/searchfilter", async (req, res) =>{
                                     break
                                 }
                             }
+
+                            video.filter = true
 
                             video.name = itog
                             

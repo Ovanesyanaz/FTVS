@@ -121,17 +121,15 @@ export const VideosPage = () => {
         </div>
 
         <div className="buttondiv">
-        <Button
-        
+        <input
+        type = "image"
+        src = "https://images.squarespace-cdn.com/content/v1/5981e865f14aa16941337125/1507228368642-3M1N4Z4KO42PGDZTMMWH/discover.png"
         className = "button"
         onClick = {ClickButton}
         disabled = {loading}
         
-        >
-        
-        Найти
-        
-        </Button>
+        />
+
 
         </div>
         
