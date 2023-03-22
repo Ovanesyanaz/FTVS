@@ -2,10 +2,6 @@ import React, {useEffect, useState} from "react";
 
 import "../styles/app.css"
 
-import SearchIcon from '@material-ui/icons/Search';
-
-import Icon from "@material-ui/core/Icon"
-
 import {VideoCard} from "../components/VideoCard";
 
 import { useHttp } from "../hooks/http.hook";
